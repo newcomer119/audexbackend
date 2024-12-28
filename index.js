@@ -35,7 +35,12 @@ app.get('*', (req, res) => {
 
 // For specific route
 app.post('/api/upload', cors(), (req, res) => {
-    // Your upload logic here
+    // Add this to debug your incoming request
+    console.log('Received upload request');
+    console.log('Files:', req.files);
+    console.log('Body:', req.body);
+    
+    res.json({ message: 'Upload endpoint reached' });
 });
 
 app.listen(PORT, () => {
