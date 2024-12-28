@@ -9,7 +9,9 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 app.use(express.json());
 
 // Configure multer for file upload
@@ -29,6 +31,11 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 // Handle React routing
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+// For specific route
+app.post('/api/upload', cors(), (req, res) => {
+    // Your upload logic here
 });
 
 app.listen(PORT, () => {
